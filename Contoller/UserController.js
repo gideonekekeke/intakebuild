@@ -34,10 +34,10 @@ const RegisterUser = async (req, res) => {
 		if (user) {
 			return res.status(404).json({ message: "user already registered" });
 		}
-		if (!avatar) {
-			return res.status(404).json({ message: "you have to select an image" });
-		}
-		const Image = await cloudinary.uploader.upload(req.file.path);
+
+		const Image = await cloudinary.uploader.upload(req.file.path, {
+			upload_preset: "code",
+		});
 
 		const regUser = await userData.create({
 			name,
