@@ -29,6 +29,14 @@ const RegisterUser = async (req, res) => {
 			code,
 		} = req.body;
 
+		const user = await userData.findOne({ email: email });
+
+		if (user) {
+			return res.status(404).json({ message: "user already registered" });
+		}
+		if (!avatar) {
+			return res.status(404).json({ message: "you have to select an image" });
+		}
 		const Image = await cloudinary.uploader.upload(req.file.path);
 
 		const regUser = await userData.create({
