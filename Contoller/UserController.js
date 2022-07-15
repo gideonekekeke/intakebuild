@@ -1,6 +1,7 @@
 const userData = require("../Model/UserModel");
 const cloudinary = require("../Utils/cloudinary");
 const path = require("path");
+const otpGenerator = require("otp-generator");
 
 const getUser = async (req, res) => {
 	const getting = await userData.find({ new: true });
@@ -39,6 +40,14 @@ const RegisterUser = async (req, res) => {
 			upload_preset: "code",
 		});
 
+		const opppt = otpGenerator.generate(3, {
+			upperCaseAlphabets: false,
+			specialChars: false,
+			digits: true,
+			lowerCaseAlphabets: false,
+		});
+		console.log(opppt);
+
 		const regUser = await userData.create({
 			name,
 			email,
@@ -52,7 +61,7 @@ const RegisterUser = async (req, res) => {
 			leadershipToggle,
 			psycho,
 			psychoToggle,
-			code: Math.floor(Math.random() * 80),
+			code: opppt,
 		});
 
 		res.status(200).json({
