@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const TestModel = require("../Model/TestModel");
 const QuestModel = require("../Model/AllTests");
+const allTes = require("../Model/AllTests");
 
 const creatingTest = async (req, res) => {
 	try {
@@ -29,6 +30,22 @@ const getAllTest = async (req, res) => {
 			path: "AllTest",
 			options: { limit: myLimit },
 		});
+
+		return res.status(200).json({
+			message: "all test gotten",
+			data: getTest,
+		});
+	} catch (err) {
+		res.status(404).json({ message: "an error occured", err });
+	}
+};
+const getAllTested = async (req, res) => {
+	try {
+		var myLimit = 10;
+		const getTesst = await allTes.find().limit(10);
+		const getTest = await getTesst.sort(() => Math.random() - 0.5);
+
+		// console.log(getTest);
 
 		return res.status(200).json({
 			message: "all test gotten",
@@ -73,4 +90,5 @@ module.exports = {
 	creatingTest,
 	CreateQuestions,
 	getAllTest,
+	getAllTested,
 };
