@@ -127,10 +127,32 @@ const updatingPsycho = async (req, res) => {
 	}
 };
 
+const LoginUser = async (req, res) => {
+	try {
+		const { name } = req.body;
+
+		const getUser = await userData.findOne({ name });
+
+		if (getUser) {
+			return res.status(200).json({
+				message: "Welcome",
+				data: getUser,
+			});
+		} else {
+			return res.status(404).json({
+				message: "User With this name is not Found",
+			});
+		}
+	} catch (err) {
+		res.status(404).json({ message: "an error occured", err });
+	}
+};
+
 module.exports = {
 	getUser,
 	RegisterUser,
 	updatingLogic,
 	updatingLeadership,
 	updatingPsycho,
+	LoginUser,
 };
