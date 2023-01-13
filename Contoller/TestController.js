@@ -41,12 +41,12 @@ const getAllTest = async (req, res) => {
 };
 const getAllTested = async (req, res) => {
 	try {
-		var count = allTes.countDocuments({});
+		const page = req.query.page || 1;
 		const ran = Math.floor(Math.random() * 18);
 		// console.log("my rand", ran);
 		const getTesst = await allTes
 			.find()
-			.skip((ran - 1) * 1)
+			.skip((page - 1) * 1)
 			// .sort(() => Math.random() - 0.5)
 			.limit(10);
 		// const getTest = await getTesst;
