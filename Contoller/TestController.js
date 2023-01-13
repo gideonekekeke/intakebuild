@@ -24,7 +24,7 @@ const creatingTest = async (req, res) => {
 
 const getAllTest = async (req, res) => {
 	try {
-		var myLimit = Math.floor(Math.random() * (10 - 1) + 1);
+		var myLimit = 10;
 		const getTest = await TestModel.find().populate({
 			path: "AllTest",
 			options: { limit: myLimit },
