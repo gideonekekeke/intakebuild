@@ -26,7 +26,7 @@ const getAllTest = async (req, res) => {
 	try {
 		const getTest = await TestModel.find().populate({
 			path: "AllTest",
-			options: { limit: 5 },
+			options: { limit: 10 },
 		});
 
 		return res.status(200).json({
