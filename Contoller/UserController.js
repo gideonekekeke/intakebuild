@@ -49,7 +49,7 @@ const RegisterUser = async (req, res) => {
 		console.log(opppt);
 
 		const regUser = await userData.create({
-			name: name.trim().toLowerCase(),
+			name: name.trim(),
 			email,
 			phoneNumber,
 			address,
