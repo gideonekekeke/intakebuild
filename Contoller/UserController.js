@@ -49,7 +49,7 @@ const RegisterUser = async (req, res) => {
 		console.log(opppt);
 
 		const regUser = await userData.create({
-			name,
+			name: name.trim().toLowerCase(),
 			email,
 			phoneNumber,
 			address,
@@ -134,10 +134,16 @@ const LoginUser = async (req, res) => {
 		const getUser = await userData.findOne({ name });
 
 		if (getUser) {
-			return res.status(200).json({
-				message: "Welcome",
-				data: getUser,
-			});
+			if (!getUser?.logicToggle) {
+				return res.status(200).json({
+					message: "Welcome",
+					data: getUser,
+				});
+			} else {
+				return res.status(404).json({
+					message: "you have already taken the test",
+				});
+			}
 		} else {
 			return res.status(404).json({
 				message: "User With this name is not Found",
