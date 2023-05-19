@@ -20,6 +20,10 @@ const userSchema = mongoose.Schema(
 		profile: {
 			type: String,
 		},
+
+		localgovernment: {
+			type: String,
+		},
 		logic: {
 			type: Number,
 			default: 0,

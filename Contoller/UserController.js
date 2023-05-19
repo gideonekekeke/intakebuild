@@ -27,6 +27,7 @@ const RegisterUser = async (req, res) => {
 			leadershipToggle,
 			psycho,
 			psychoToggle,
+			localgovernment,
 			code,
 		} = req.body;
 
@@ -60,6 +61,7 @@ const RegisterUser = async (req, res) => {
 			leadership,
 			leadershipToggle,
 			psycho,
+			localgovernment,
 			psychoToggle,
 			code: opppt,
 		});
