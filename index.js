@@ -11,6 +11,7 @@ app.use(cors());
 
 app.use("/api", require("./Routes/UserRoute"));
 app.use("/api/test", require("./Routes/TestRoute"));
+app.use("/api/excel", require("./Routes/exelData"));
 
 app.listen(port, () => {
 	console.log("listening on port 6000");
